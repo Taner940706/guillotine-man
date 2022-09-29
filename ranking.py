@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import ttk
 
 
-class Ranking(tk.Tk):
+class Ranking(tk.Toplevel):
 
 	def __init__(self):
 		super().__init__()
@@ -12,5 +12,6 @@ class Ranking(tk.Tk):
 		self.resizable(False, False)
 
 
-
-		
+if __name__ == "__main__":
+	app = Ranking()
+	app.mainloop()
