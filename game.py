@@ -54,61 +54,63 @@ class Game(tk.Toplevel):
         self.player_question = random.choice(list(questions.keys()))
         self.category.config(text=questions[self.player_question][0])
         self.question.config(text=questions[self.player_question][1])
+        #self.score = int(self.score_text['text'])
+        self.ans = tkinter.StringVar(value=questions[self.player_question][2])
 
     def play_game(self):
-        score = int(self.score_text['text'])
-        ans = tkinter.StringVar(name='ans', value=questions[self.player_question][2])
-        if len(questions) == 1:
-            self.score_text.config(text=score + 10)
-            messagebox.showinfo("showinfo", "You Win!")
-            player_name = simpledialog.askstring("Input", "Type your name:")
-            ranking.update({player_name: self.score_text['text']})
-            file = open('rating.json', 'w')
-            json.dump(ranking, file, indent=4)
-            file.close()
-            Game.quit(self)
-            return
-        else:
-            if self.answer.get(1.0, "end-1c") == ans.get():
-                del questions[self.player_question]
-                messagebox.showinfo("showinfo", "Your answer is correct! Well done!")
-                self.player_question = random.choice(list(questions.keys()))
-                self.category.config(text=questions[self.player_question][0])
-                self.question.config(text=questions[self.player_question][1])
-                self.score_text.config(text=score+10)
 
-            else:
-                messagebox.showerror("showerror", "Not correct!")
-                if self.lost_game == 0:
-                    self.img = ImageTk.PhotoImage(Image.open("./images/only_guillotine.png"))
-                    # Create a Label Widget to display the text or Image
-                    self.label = Label(self.frame_draw, image=self.img)
-                    self.label.pack()
-                    self.lost_game += 1
-                elif self.lost_game == 1:
-                    self.img = ImageTk.PhotoImage(Image.open("./images/with_prisoner.png"))
-                    # Create a Label Widget to display the text or Image
-                    self.label = Label(self.frame_draw, image=self.img)
-                    self.label.pack()
-                    self.lost_game += 1
-                elif self.lost_game == 2:
-                    self.img = ImageTk.PhotoImage(Image.open("./images/with_prisoner_judge.png"))
-                    # Create a Label Widget to display the text or Image
-                    self.label = Label(self.frame_draw, image=self.img)
-                    self.label.pack()
-                    self.lost_game += 1
-                elif self.lost_game == 3:
-                    self.img = ImageTk.PhotoImage(Image.open("./images/game_over.png"))
-                    # Create a Label Widget to display the text or Image
-                    self.label = Label(self.frame_draw, image=self.img)
-                    self.label.pack()
-                    messagebox.showinfo("showinfo", "Game Over!")
-                    player_name = simpledialog.askstring("Input", "Type your name:")
-                    ranking.update({player_name: self.score_text['text']})
-                    file = open('rating.json', 'w')
-                    json.dump(ranking, file, indent=4)
-                    file.close()
-                    Game.quit(self)
+        if self.answer.get(1.0, "end-1c") == self.ans.get():
+            self.score_text.config(text=int(self.score_text['text']) + 10)
+            messagebox.showinfo("showinfo", "Your answer is correct! Well done!")
+
+            questions.pop(self.player_question, None)
+            if not questions:
+                messagebox.showinfo("showinfo", "You Win!")
+                player_name = simpledialog.askstring("Input", "Type your name:")
+                ranking.update({player_name: self.score_text['text']})
+                file = open('rating.json', 'w')
+                json.dump(ranking, file, indent=4)
+                file.close()
+                Game.quit(self)
+
+        else:
+            messagebox.showerror("showerror", "Not correct!")
+            if self.lost_game == 0:
+                self.img = ImageTk.PhotoImage(Image.open("./images/only_guillotine.png"))
+                # Create a Label Widget to display the text or Image
+                self.label = Label(self.frame_draw, image=self.img)
+                self.label.pack()
+                self.lost_game += 1
+            elif self.lost_game == 1:
+                self.img = ImageTk.PhotoImage(Image.open("./images/with_prisoner.png"))
+                # Create a Label Widget to display the text or Image
+                self.label = Label(self.frame_draw, image=self.img)
+                self.label.pack()
+                self.lost_game += 1
+            elif self.lost_game == 2:
+                self.img = ImageTk.PhotoImage(Image.open("./images/with_prisoner_judge.png"))
+                # Create a Label Widget to display the text or Image
+                self.label = Label(self.frame_draw, image=self.img)
+                self.label.pack()
+                self.lost_game += 1
+            elif self.lost_game == 3:
+                self.img = ImageTk.PhotoImage(Image.open("./images/game_over.png"))
+                # Create a Label Widget to display the text or Image
+                self.label = Label(self.frame_draw, image=self.img)
+                self.label.pack()
+                messagebox.showinfo("showinfo", "Game Over!")
+                player_name = simpledialog.askstring("Input", "Type your name:")
+                ranking.update({player_name: self.score_text['text']})
+                file = open('rating.json', 'w')
+                json.dump(ranking, file, indent=4)
+                file.close()
+                Game.quit(self)
+        if questions:
+            self.player_question = random.choice(list(questions.keys()))
+            self.category.config(text=questions[self.player_question][0])
+            self.question.config(text=questions[self.player_question][1])
+            self.ans = tkinter.StringVar(value=questions[self.player_question][2])
+
 
 
 if __name__ == "__main__":
