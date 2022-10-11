@@ -54,7 +54,6 @@ class Game(tk.Toplevel):
         self.player_question = random.choice(list(questions.keys()))
         self.category.config(text=questions[self.player_question][0])
         self.question.config(text=questions[self.player_question][1])
-        #self.score = int(self.score_text['text'])
         self.ans = tkinter.StringVar(value=questions[self.player_question][2])
 
     def play_game(self):

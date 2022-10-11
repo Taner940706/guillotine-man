@@ -1,5 +1,22 @@
 {
-	"1": ["Animals","Who is the biggeest cat in the world?", "lion"],
-	"2": ["Mathematics","2x2?", "4"],
-	"3": ["Interesting","My name is?", "taner"]
+    "1": [
+        "Animals",
+        "Who is the biggeest cat in the world?",
+        "lion"
+    ],
+    "2": [
+        "Mathematics",
+        "2x2?",
+        "4"
+    ],
+    "3": [
+        "Interesting",
+        "My name is?",
+        "taner"
+    ],
+    "4": [
+        "all",
+        "bana",
+        "bishey"
+    ]
 }
