@@ -1,4 +1,3 @@
-from tkinter import ttk
 import tkinter as tk
 from tkinter import *
 from PIL import ImageTk, Image
@@ -22,7 +21,8 @@ class Help(tk.Toplevel):
         self.label.pack()
         self.scrollbar = Scrollbar(self.frame, orient="vertical")
         self.scrollbar.pack(side="right", fill="y")
-        self.help_text = Label(self.frame, width=50, text="Type some text")
+        self.help_text = Text(self.frame, width=20)
+        self.help_text.pack(padx=10, pady=10)
         self.scrollbar.config(command=self.help_text.yview)
         self.btn_close = Button(self.frame, text='Close')
         self.btn_close["command"] = self.destroy

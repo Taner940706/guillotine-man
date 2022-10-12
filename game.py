@@ -33,9 +33,9 @@ class Game(tk.Toplevel):
         self.label = Label(self.frame_draw, image=self.img)
         self.label.pack()
         self.score_label = Label(self, text="SCORE")
-        self.score_label.place(relx=5.0, rely=0.0, anchor='ne')
+        self.score_label.pack()
         self.score_text = Label(self, text=10)
-        self.score_text.place(relx=1.0, rely=0.0, anchor='ne')
+        self.score_text.pack()
 
         self.question_frame = LabelFrame(self, text="Question number", padx=30, pady=20)
         self.category = Label(self, text="Category...")

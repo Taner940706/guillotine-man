@@ -17,6 +17,9 @@ class Ranking(tk.Toplevel):
 		for i in order:
 			self.label = Label(self, text=f'Name: {i}; Points: {order[i]}')
 			self.label.pack()
+		self.btn_close = Button(self, text="Close")
+		self.btn_close["command"] = self.destroy
+		self.btn_close.pack()
 
 
 if __name__ == "__main__":

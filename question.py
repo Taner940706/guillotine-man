@@ -14,6 +14,7 @@ class Question(tk.Toplevel):
 		self.geometry('700x500')
 		self.resizable(False, False)
 
+
 		self.main_label = Label(self, text="Create New Question")
 		self.main_label.pack()
 		self.category_label = Label(self, text="Select Category")
@@ -27,6 +28,9 @@ class Question(tk.Toplevel):
 		self.btn_accept = Button(self, text="Add Question")
 		self.btn_accept["command"] = self.add_question
 		self.btn_accept.pack()
+		self.btn_close = Button(self, text="Close")
+		self.btn_close["command"] = self.destroy
+		self.btn_close.pack()
 
 	def add_question(self):
 		questions.update({str(len(questions)+1): [self.category.get(), self.question_text.get(), self.answer_text.get()]})
