@@ -47,7 +47,7 @@ class Game(tk.Toplevel):
 
         self.answer = Text(self, width=50)
         self.answer.pack()
-        self.btn_accept = Button(self, text="Send")
+        self.btn_accept = Button(self, text="Guess")
         self.btn_accept["command"] = self.play_game
         self.btn_accept.pack()
 
